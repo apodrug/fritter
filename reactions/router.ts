@@ -71,7 +71,7 @@ router.get(
  *
  * @name POST /api/reactions
  *
- * @return {FreetResponse} - The created freet
+ * @return {ReactResponse} - The created reaction
  * @throws {403} - If the user is not logged in
  * @throws {400} - If the freet content is empty or a stream of empty spaces
  * @throws {413} - If the freet content is more than 140 characters long

@@ -313,3 +313,53 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
+
+#### `GET /api/reactions?author=USERNAME` - Get all reactions by a user
+
+**Returns**
+
+- An array of reactions by user with username `author`
+
+**Throws**
+
+- `400` if `author` is not given
+- `404` if `author` is not a recognized username of any user
+
+#### `GET /api/reactions?freet=ID` - Get all reactions of a specific freet
+
+**Returns**
+
+- An array of reactions that are associated with freet `id`
+
+**Throws**
+
+- `400` if `ID` is not given
+- `404` if `ID` is not a recognized freet
+
+#### `POST /api/reactions` - Create a new reaction
+
+**Body**
+
+- `freetId` _{string}_ - The freet the user is reacting to
+- `type` _{string}_ - The type of reaction
+
+**Returns**
+
+- A success message
+- A object with the created reaction
+
+**Throws**
+
+- `403` if the user is not logged in
+
+#### `DELETE /api/reactions/:reactId?` - Delete an existing reaction
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if the user is not logged in
+- `403` if the user is not the author of the freet
+- `404` if the freetId is invalid
