@@ -43,6 +43,10 @@ const ReactionSchema = new Schema<Reaction>({
   reactionType: {
     type: Schema.Types.String,
     required: true
+  },
+  recommended: {
+    type: Schema.Types.Number,
+    required: true
   }
 });
 

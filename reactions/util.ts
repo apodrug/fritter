@@ -26,7 +26,7 @@ const constructReactResponse = (react: HydratedDocument<Reaction>): ReactRespons
   const {username} = reactCopy.userId;
   delete reactCopy.userId;
   return {
-    ...reactCopy,
+    // ...reactCopy,
     _id: reactCopy._id.toString(),
     user: username,
     freet: reactCopy.freetId._id.toString(),

@@ -3,6 +3,7 @@ import express from 'express';
 import ReactCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as freetValidator from '../freet/middleware';
+import * as reactValidator from '../reactions/middleware';
 import * as util from './util';
 
 const router = express.Router();
@@ -80,11 +81,11 @@ router.post(
   '/',
   [
     userValidator.isUserLoggedIn,
-    freetValidator.isFreetExists
+    reactValidator.isFreetExists
   ],
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
-    const reaction = await ReactCollection.addOne(userId, req.body);
+    const reaction = await ReactCollection.addOne(req.body.reactionType, userId, req.body.freetId);
 
     res.status(201).json({
       message: 'Your reaction was created successfully.',
@@ -116,4 +117,4 @@ router.delete(
   }
 );
 
-export {router as freetRouter};
+export {router as reactRouter};

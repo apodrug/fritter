@@ -22,15 +22,16 @@ class ReactCollection {
    * @return {Promise<HydratedDocument<Like>>} - The newly created reaction
    */
   static async addOne(reactionType: string, userId: Types.ObjectId | string, freet: Types.ObjectId | string): Promise<HydratedDocument<Reaction>> {
+    console.log('inCollection');
     const recommended = 0;
     const reaction = new ReactionModel({
       userId,
-      freet,
+      freetId: freet,
       reactionType,
       recommended
     });
     await reaction.save(); // Saves reactions to MongoDB
-    return reaction.populate('authorId');
+    return reaction.populate('userId');
   }
 
   /**
@@ -95,4 +96,4 @@ class ReactCollection {
   }
 }
 
-export default FreetCollection;
+export default ReactCollection;
