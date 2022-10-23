@@ -14,6 +14,7 @@ export type Reaction = {
   freetId: Types.ObjectId;
   reactionType: string;
   recommended: number;
+
 };
 
 export type PopulatedReaction = {

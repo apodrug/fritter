@@ -7,7 +7,7 @@ type ReactResponse = {
   user: string;
   freet: string;
   reaction: string;
-  postBoost: string;
+  postBoost: number;
 };
 
 /**
@@ -31,7 +31,7 @@ const constructReactResponse = (react: HydratedDocument<Reaction>): ReactRespons
     user: username,
     freet: reactCopy.freetId._id.toString(),
     reaction: reactCopy.reactionType.toString(),
-    postBoost: reactCopy.recommended.toString()
+    postBoost: reactCopy.recommended
   };
 };
 

@@ -4,14 +4,14 @@
  * e.g. for createUser, fields has properites 'username' and 'password'
  */
 
-function viewAllReacts(fields) {
+function viewAllReacts() {
   fetch('/api/reactions')
     .then(showResponse)
     .catch(showResponse);
 }
 
-function viewReactsByAuthor(fields) {
-  fetch(`/api/reactions?userId=${fields.user}`)
+function viewReactsByUser(fields) {
+  fetch(`/api/reactions?author=${fields.author}`)
     .then(showResponse)
     .catch(showResponse);
 }

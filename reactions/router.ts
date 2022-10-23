@@ -45,6 +45,11 @@ router.get(
       return;
     }
 
+    if (req.query.freetId !== undefined) {
+      next('route');
+      return;
+    }
+
     const allReacts = await ReactCollection.findAll();
     const response = allReacts.map(util.constructReactResponse);
     res.status(200).json(response);
@@ -56,9 +61,13 @@ router.get(
     const authorReacts = await ReactCollection.findAllByUsername(req.query.author as string);
     const response = authorReacts.map(util.constructReactResponse);
     res.status(200).json(response);
-  },
+  }
+);
+
+router.get(
+  '/',
   [
-    freetValidator.isFreetExists
+    reactValidator.isFreetExistsRead
   ],
   async (req: Request, res: Response) => {
     const freetReacts = await ReactCollection.findAllByFreet(req.query.freetId as string);
@@ -81,7 +90,7 @@ router.post(
   '/',
   [
     userValidator.isUserLoggedIn,
-    reactValidator.isFreetExists
+    reactValidator.isFreetExistsWrite
   ],
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
@@ -104,13 +113,14 @@ router.post(
  * @throws {404} - If the reactId is not valid
  */
 router.delete(
-  '/:freetId?',
+  '/:id?',
   [
     userValidator.isUserLoggedIn,
-    freetValidator.isFreetExists
+    reactValidator.isReactExists,
+    reactValidator.isValidReactModifier
   ],
   async (req: Request, res: Response) => {
-    await ReactCollection.deleteOne(req.params.reactId);
+    await ReactCollection.deleteOne(req.params.id);
     res.status(200).json({
       message: 'Your reaction was deleted successfully.'
     });

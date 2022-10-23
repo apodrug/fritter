@@ -22,8 +22,11 @@ class ReactCollection {
    * @return {Promise<HydratedDocument<Like>>} - The newly created reaction
    */
   static async addOne(reactionType: string, userId: Types.ObjectId | string, freet: Types.ObjectId | string): Promise<HydratedDocument<Reaction>> {
-    console.log('inCollection');
-    const recommended = 0;
+    let recommended = 1;
+    if (reactionType === 'sad') {
+      recommended = 0;
+    }
+
     const reaction = new ReactionModel({
       userId,
       freetId: freet,
@@ -50,15 +53,15 @@ class ReactCollection {
    * @return {Promise<HydratedDocument<Reaction>[]>} - An array of all of the reactions
    */
   static async findAll(): Promise<Array<HydratedDocument<Reaction>>> {
-    // Retrieves freets and sorts them from most to least recent
+    // Retrieves reacts and sorts them from most to least recent
     return ReactionModel.find({}).sort({dateModified: -1}).populate('userId');
   }
 
   /**
    * Get all the reactions by given user
    *
-   * @param {string} username - The username of author of the freets
-   * @return {Promise<HydratedDocument<Reaction>[]>} - An array of all of the freets
+   * @param {string} username - The username of author of the reactions
+   * @return {Promise<HydratedDocument<Reaction>[]>} - An array of all of the reactions
    */
   static async findAllByUsername(username: string): Promise<Array<HydratedDocument<Reaction>>> {
     const author = await UserCollection.findOneByUsername(username);

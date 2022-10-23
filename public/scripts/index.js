@@ -40,7 +40,12 @@ const formsAndHandlers = {
   'create-freet': createFreet,
   'edit-freet': editFreet,
   'delete-freet': deleteFreet,
-  'create-react': createReact
+  'create-react': createReact,
+  'view-all-reactions': viewAllReacts,
+  'view-reactions-by-user': viewReactsByUser,
+  'view-reactions-by-freet': viewReactsByFreet,
+  'delete-reaction': deleteReact,
+  'create-status': createStatus
 };
 
 // Attach handlers to forms

@@ -8,6 +8,7 @@
   <script src="/scripts/freet.js"></script>
   <script src="/scripts/user.js"></script>
   <script src="/scripts/react.js"></script>
+  <script src="/scripts/status.js"></script>
   <script src="/scripts/index.js"></script>
 </head>
 
@@ -126,10 +127,51 @@
             <input id="freetId" name="freetId">
           </div>
           <div>
-            <label for="reactionType">Type:</label>
+            <label for="reactionType">Type(heart,happy,sad):</label>
             <textarea id="reactionType" name="reactionType"></textarea>
           </div>
           <input type="submit" value="React">
+        </form>
+
+        <form id="view-all-reactions">
+          <h3>View All Reactions</h3>
+          <input type="submit" value="View All Reactions">
+        </form>
+
+        <form id="view-reactions-by-user">
+          <h3>View Reactions By User</h3>
+          <div>
+            <label for="author">User:</label>
+            <input id="author" name="author">
+          </div>
+          <input type="submit" value="View Reactions by User">
+        </form>
+
+        <form id="view-reactions-by-freet">
+          <h3>View Reactions By Freet</h3>
+          <div>
+            <label for="freet">Freet ID:</label>
+            <input id="freetId" name="freetId">
+          </div>
+          <input type="submit" value="View Reactions by Freet">
+        </form>
+        
+        <form id="delete-reaction">
+          <h3>Delete Reaction</h3>
+          <div>
+            <label for="id">ID:</label>
+            <input id="id" name="id">
+          </div>
+          <input type="submit" value="Delete Reaction">
+        </form>
+
+        <form id="create-status">
+          <h3>Update Status</h3>
+          <div>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content"></textarea>
+          </div>
+          <input type="submit" value="Update Status">
         </form>
 
       </div>
