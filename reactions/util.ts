@@ -15,7 +15,7 @@ type ReactResponse = {
  * with all the information needed by the frontend
  *
  * @param {HydratedDocument<React>} reaction - A reaction
- * @returns {FreetResponse} - The freet object formatted for the frontend
+ * @returns {ReactResponse} - The react object formatted for the frontend
  */
 const constructReactResponse = (react: HydratedDocument<Reaction>): ReactResponse => {
   const reactCopy: PopulatedReaction = {

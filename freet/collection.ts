@@ -38,6 +38,7 @@ class FreetCollection {
    * @return {Promise<HydratedDocument<Freet>> | Promise<null> } - The freet with the given freetId, if any
    */
   static async findOne(freetId: Types.ObjectId | string): Promise<HydratedDocument<Freet>> {
+    console.log(freetId)
     return FreetModel.findOne({_id: freetId}).populate('authorId');
   }
 

@@ -1,17 +1,17 @@
 import type {Request, Response, NextFunction} from 'express';
 import {Types} from 'mongoose';
-import StatusCollection from '../freet/collection';
+import StatusCollection from '../status/collection';
 
 /**
  * Checks if a status with statusId is req.params exists
  */
 const isStatusExists = async (req: Request, res: Response, next: NextFunction) => {
-  const validFormat = Types.ObjectId.isValid(req.params.statusId);
-  const status = validFormat ? await StatusCollection.findOne(req.params.statusId) : '';
+  const validFormat = Types.ObjectId.isValid(req.params.id);
+  const status = validFormat ? await StatusCollection.findOne(req.params.id) : '';
   if (!status) {
     res.status(404).json({
       error: {
-        freetNotFound: `Status with status ID ${req.params.statusId} does not exist.`
+        freetNotFound: `Status with status ID ${req.params.id} does not exist.`
       }
     });
     return;
@@ -47,7 +47,7 @@ const isValidStatusContent = (req: Request, res: Response, next: NextFunction) =
  * Checks if the current user is the author of the freet whose freetId is in req.params
  */
 const isValidStatusModifier = async (req: Request, res: Response, next: NextFunction) => {
-  const status = await StatusCollection.findOne(req.params.statusId);
+  const status = await StatusCollection.findOne(req.params.id);
   const statusId = status.authorId._id;
   if (req.session.userId !== statusId.toString()) {
     res.status(403).json({

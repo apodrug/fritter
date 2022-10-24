@@ -23,17 +23,6 @@ const router = express.Router();
  *
  * @return {ReactResponse[]} - An array of reacts created by user with id, userId
  * @throws {400} - If userId is not given
- * @throws {404} - If no user has given authorId
- *
- */
-/**
- * Get reactions of a freet.
- *
- * @name GET /api/reactions?freetId=id
- *
- * @return {ReactResponse[]} - An array of reacts created by user with id, userId
- * @throws {400} - If freetId is not given
- * @throws {404} - If no react has given freetId
  *
  */
 router.get(
@@ -64,6 +53,15 @@ router.get(
   }
 );
 
+/**
+ * Get reactions of a freet.
+ *
+ * @name GET /api/reactions?freetId=id
+ *
+ * @return {ReactResponse[]} - An array of reacts of a freet
+ * @throws {404} - If freetId is not valid
+ *
+ */
 router.get(
   '/',
   [
@@ -83,8 +81,6 @@ router.get(
  *
  * @return {ReactResponse} - The created reaction
  * @throws {403} - If the user is not logged in
- * @throws {400} - If the freet content is empty or a stream of empty spaces
- * @throws {413} - If the freet content is more than 140 characters long
  */
 router.post(
   '/',

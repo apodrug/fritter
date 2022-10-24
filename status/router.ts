@@ -87,14 +87,14 @@ router.post(
  * @throws {404} - If the freetId is not valid
  */
 router.delete(
-  '/:freetId?',
+  '/:id?',
   [
     userValidator.isUserLoggedIn,
     statusValidator.isStatusExists,
     statusValidator.isValidStatusModifier
   ],
   async (req: Request, res: Response) => {
-    await StatusCollection.deleteOne(req.params.statusId);
+    await StatusCollection.deleteOne(req.params.id);
     res.status(200).json({
       message: 'Your status was deleted successfully.'
     });

@@ -5,8 +5,8 @@ import UserCollection from '../user/collection';
 import FreetCollection from '../freet/collection';
 
 /**
- * This files contains a class that has the functionality to explore freets
- * stored in MongoDB, including adding, finding, updating, and deleting freets.
+ * This files contains a class that has the functionality to explore reactions
+ * stored in MongoDB, including adding, finding, and deleting reactions.
  * Feel free to add additional operations in this file.
  *
  * Note: HydratedDocument<Freet> is the output of the FreetModel() constructor,
@@ -72,17 +72,17 @@ class ReactCollection {
    * Get all the reactions of a freet
    *
    * @param {string} freet - The id of a freet
-   * @return {Promise<HydratedDocument<Reaction>[]>} - An array of all of the freets
+   * @return {Promise<HydratedDocument<Reaction>[]>} - An array of all of the reactions
    */
   static async findAllByFreet(freet: Types.ObjectId | string): Promise<Array<HydratedDocument<Reaction>>> {
     return ReactionModel.find({freetId: freet}).populate('userId');
   }
 
   /**
-   * Remove a reaction with given freetId.
+   * Remove a reaction with given reactionId.
    *
-   * @param {string} freetId - The freetId of freet to delete
-   * @return {Promise<Boolean>} - true if the freet has been deleted, false otherwise
+   * @param {string} freetId - The reactionId of reaction to delete
+   * @return {Promise<Boolean>} - true if the reaction has been deleted, false otherwise
    */
   static async deleteOne(reactId: Types.ObjectId | string): Promise<boolean> {
     const reaction = await ReactionModel.deleteOne({_id: reactId});
@@ -92,7 +92,7 @@ class ReactCollection {
   /**
    * Delete all the reactions by the given author
    *
-   * @param {string} authorId - The id of author of freets
+   * @param {string} authorId - The id of author of reactions
    */
   static async deleteMany(authorId: Types.ObjectId | string): Promise<void> {
     await ReactionModel.deleteMany({authorId});

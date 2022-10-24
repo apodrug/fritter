@@ -5,6 +5,7 @@ import UserCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as util from './util';
 import ReactCollection from '../reactions/collection';
+import StatusCollection from '../status/collection';
 
 const router = express.Router();
 
@@ -143,6 +144,7 @@ router.delete(
     await UserCollection.deleteOne(userId);
     await FreetCollection.deleteMany(userId);
     await ReactCollection.deleteMany(userId);
+    await StatusCollection.deleteMany(userId);
     req.session.userId = undefined;
     res.status(200).json({
       message: 'Your account has been deleted successfully.'

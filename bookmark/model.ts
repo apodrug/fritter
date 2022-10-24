@@ -4,31 +4,26 @@ import type {User} from '../user/model';
 import type {Freet} from '../freet/model';
 
 /**
- * This file defines the properties stored in a Reaction
+ * This file defines the properties stored in a Bookmark
  */
 
-// Type definition for Reaction on the backend
-export type Reaction = {
+// Type definition for Bookmark on the backend
+export type Bookmark = {
   _id: Types.ObjectId; // MongoDB assigns each object this ID on creation
   userId: Types.ObjectId;
   freetId: Types.ObjectId;
-  reactionType: string;
-  recommended: number;
-
 };
 
-export type PopulatedReaction = {
+export type PopulatedBookmark = {
   _id: Types.ObjectId; // MongoDB assigns each object this ID on creation
   userId: User;
   freetId: Freet;
-  reactionType: string;
-  recommended: number;
 };
 
 // Mongoose schema definition for interfacing with a MongoDB table
-// Reactions stored in this table will have these fields, with the
+// Bookmarks stored in this table will have these fields, with the
 // type given by the type property, inside MongoDB
-const ReactionSchema = new Schema<Reaction>({
+const BookmarkSchema = new Schema<Bookmark>({
   // The user userId of the reaction
   userId: {
     // Use Types.ObjectId outside of the schema
@@ -40,16 +35,8 @@ const ReactionSchema = new Schema<Reaction>({
   freetId: {
     type: Schema.Types.ObjectId,
     required: true
-  },
-  reactionType: {
-    type: Schema.Types.String,
-    required: true
-  },
-  recommended: {
-    type: Schema.Types.Number,
-    required: true
   }
 });
 
-const ReactionModel = model<Reaction>('Reaction', ReactionSchema);
-export default ReactionModel;
+const BookmarkModel = model<Bookmark>('Bookmark', BookmarkSchema);
+export default BookmarkModel;

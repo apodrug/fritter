@@ -45,7 +45,14 @@ const formsAndHandlers = {
   'view-reactions-by-user': viewReactsByUser,
   'view-reactions-by-freet': viewReactsByFreet,
   'delete-reaction': deleteReact,
-  'create-status': createStatus
+  'create-status': createStatus,
+  'view-all-statuses': viewAllStatuses,
+  'view-status-by-author': viewStatusByAuthor,
+  'delete-status': deleteStatus,
+  'create-bookmark': createBookmark,
+  'view-all-bookmarks': viewAllBookmarks,
+  'view-bookmarks-by-user': viewBookmarksByUser,
+  'delete-bookmark': deleteBookmark,
 };
 
 // Attach handlers to forms
