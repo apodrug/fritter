@@ -2,7 +2,6 @@ import type {HydratedDocument} from 'mongoose';
 import moment from 'moment';
 import type {Status, PopulatedStatus} from '../status/model';
 
-// Update this if you add a property to the Freet type!
 type StatusResponse = {
   _id: string;
   author: string;

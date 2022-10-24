@@ -21,8 +21,8 @@ const isStatusExists = async (req: Request, res: Response, next: NextFunction) =
 };
 
 /**
- * Checks if the content of the freet in req.body is valid, i.e not a stream of empty
- * spaces and not more than 140 characters
+ * Checks if the content of the status in req.body is valid, i.e not a stream of empty
+ * spaces and not more than 30 characters
  */
 const isValidStatusContent = (req: Request, res: Response, next: NextFunction) => {
   const {content} = req.body as {content: string};
@@ -44,7 +44,7 @@ const isValidStatusContent = (req: Request, res: Response, next: NextFunction) =
 };
 
 /**
- * Checks if the current user is the author of the freet whose freetId is in req.params
+ * Checks if the current user is the author of the status whose statusId is in req.params
  */
 const isValidStatusModifier = async (req: Request, res: Response, next: NextFunction) => {
   const status = await StatusCollection.findOne(req.params.id);

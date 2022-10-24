@@ -67,7 +67,7 @@ router.post(
   ],
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
-    const reaction = await BookmarkCollection.addOne(userId, req.body.bookmarkId);
+    const reaction = await BookmarkCollection.addOne(userId, req.body.freetId);
 
     res.status(201).json({
       message: 'Your bookmark was created successfully.',

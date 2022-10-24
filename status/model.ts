@@ -3,8 +3,8 @@ import {Schema, model} from 'mongoose';
 import type {User} from '../user/model';
 
 /**
- * This file defines the properties stored in a Freet
- * DO NOT implement operations here ---> use collection file
+ * This file defines the properties stored in a Status
+ * 
  */
 
 // Type definition for Status on the backend
@@ -23,7 +23,7 @@ export type PopulatedStatus = {
 };
 
 // Mongoose schema definition for interfacing with a MongoDB table
-// Freets stored in this table will have these fields, with the
+// Statuses stored in this table will have these fields, with the
 // type given by the type property, inside MongoDB
 const StatusSchema = new Schema<Status>({
   // The author userId
@@ -33,12 +33,12 @@ const StatusSchema = new Schema<Status>({
     required: true,
     ref: 'User'
   },
-  // The date the freet was created
+  // The date the status was created
   dateCreated: {
     type: Date,
-    required: true
+    required: true,
   },
-  // The content of the freet
+  // The content of the status
   content: {
     type: String,
     required: true

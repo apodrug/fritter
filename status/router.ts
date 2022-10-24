@@ -53,11 +53,11 @@ router.get(
  *
  * @name POST /api/statuses
  *
- * @param {string} content - The content of the freet
- * @return {FreetResponse} - The created freet
+ * @param {string} content - The content of the status
+ * @return {FreetResponse} - The created status
  * @throws {403} - If the user is not logged in
- * @throws {400} - If the freet content is empty or a stream of empty spaces
- * @throws {413} - If the freet content is more than 140 characters long
+ * @throws {400} - If the status content is empty or a stream of empty spaces
+ * @throws {413} - If the status content is more than 30 characters long
  */
 router.post(
   '/',
@@ -83,8 +83,8 @@ router.post(
  *
  * @return {string} - A success message
  * @throws {403} - If the user is not logged in or is not the author of
- *                 the freet
- * @throws {404} - If the freetId is not valid
+ *                 the status
+ * @throws {404} - If the statusId is not valid
  */
 router.delete(
   '/:id?',
