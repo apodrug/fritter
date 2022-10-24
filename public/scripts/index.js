@@ -53,6 +53,7 @@ const formsAndHandlers = {
   'view-all-bookmarks': viewAllBookmarks,
   'view-bookmarks-by-user': viewBookmarksByUser,
   'delete-bookmark': deleteBookmark,
+  'sort-freets-recommended': sortFreetsRecommended
 };
 
 // Attach handlers to forms

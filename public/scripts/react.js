@@ -33,3 +33,9 @@ function deleteReact(fields) {
     .then(showResponse)
     .catch(showResponse);
 }
+
+function sortFreetsRecommended(fields) {
+  fetch(`/api/reactions/freets`)
+    .then(showResponse)
+    .catch(showResponse);
+}

@@ -100,6 +100,31 @@ class ReactCollection {
     await ReactionModel.deleteMany({authorId});
   }
 
+  /**
+   * Get all freets sorted by recommended
+   *
+   * @return {Promise<HydratedDocument<Freet>[]>} - An array of all of the reactions
+   */
+  static async sortFreetsByRecommended(): Promise<Array<HydratedDocument<Freet>>> {
+    const recommendedFreets: any = {};
+    const freets = await FreetCollection.findAll(); //get all freets unordered
+    freets.forEach(dict => recommendedFreets[dict._id.toString()]=0); //make dict of freet, var of how many recommended reactions the freet has (initialized to 0)
+    const reactions = await ReactCollection.findAll(); //get all reactions
+    reactions.forEach(dict => recommendedFreets[dict.freetId.toString()]+=dict.recommended); //for each reaction, add the recommended var(if its boosting post: 1,0,-1) to freet dict
+
+    let recommendedFreetsEntries: [string, number][] = Object.entries(recommendedFreets); //change dictionary to list so we can sort
+    
+    let sortedEntries = recommendedFreetsEntries.sort(([, a], [, b]) => b - a); //sort previous dict by recommended var
+    
+    let sortedFreetObjs: any = [];
+
+    for (var [freetId,val] of sortedEntries){ //make list of just freet objects using the sorted list of freet Ids
+      sortedFreetObjs.push(await FreetCollection.findOne(freetId))
+    }
+
+    return sortedFreetObjs;
+  
+    }
 }
 
 export default ReactCollection;

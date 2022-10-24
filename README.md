@@ -342,6 +342,13 @@ This renders the `index.html` file that will be used to interact with the backen
 
 - `404` if `ID` is not a recognized freet
 
+#### `GET /api/reactions/freets` - Get all freets sorted by their reactions recommended count
+
+**Returns**
+
+- An array of all freets sorted in descending order by reaction recommended count
+
+
 #### `POST /api/reactions` - Create a new reaction
 
 **Body**
@@ -370,6 +377,7 @@ This renders the `index.html` file that will be used to interact with the backen
 - `403` if the user is not logged in
 - `403` if the user is not the author of the reaction
 - `404` if the reaction id is invalid (does not exist)
+
 
 #### `GET /api/bookmarks` - Get all the bookmarks
 

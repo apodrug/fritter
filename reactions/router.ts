@@ -5,6 +5,7 @@ import * as userValidator from '../user/middleware';
 import * as freetValidator from '../freet/middleware';
 import * as reactValidator from '../reactions/middleware';
 import * as util from './util';
+import * as freetUtil from '../freet/util';
 
 const router = express.Router();
 
@@ -71,6 +72,23 @@ router.get(
   async (req: Request, res: Response) => {
     const freetReacts = await ReactCollection.findAllByFreet(req.query.freetId as string);
     const response = freetReacts.map(util.constructReactResponse);
+    res.status(200).json(response);
+  }
+);
+
+/**
+ * Get all freets sorted by recommended
+ *
+ * @name GET /api/reactions/freets
+ *
+ * @return {ReactResponse[]} - An array of freets sorted by their reaction recommended variable
+ *
+ */
+ router.get(
+  '/freets',
+  async (req: Request, res: Response) => {
+    const freetReacts = await ReactCollection.sortFreetsByRecommended();
+    const response = freetReacts.map(freetUtil.constructFreetResponse);
     res.status(200).json(response);
   }
 );
