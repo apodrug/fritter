@@ -25,7 +25,7 @@ const isBookmarkExists = async (req: Request, res: Response, next: NextFunction)
 /**
  * Checks if a freet with freetId in req.params exists
  */
-const isFreetExistsWrite = async (req: Request, res: Response, next: NextFunction) => {
+const isFreetExists = async (req: Request, res: Response, next: NextFunction) => {
   console.log(req.query)
   const validFormat = Types.ObjectId.isValid(req.query.freetId as string);
   console.log(validFormat)
@@ -34,24 +34,6 @@ const isFreetExistsWrite = async (req: Request, res: Response, next: NextFunctio
     res.status(404).json({
       error: {
         freetNotFound: `Freet with freet ID ${req.query.freetId} does not exist.`
-      }
-    });
-    return;
-  }
-
-  next();
-};
-
-/**
- * Checks if a freet with freetId is req.params exists
- */
-const isFreetExistsRead = async (req: Request, res: Response, next: NextFunction) => {
-  const validFormat = Types.ObjectId.isValid(req.query.freetId as string);
-  const freet = validFormat ? await FreetCollection.findOne(req.query.freetId as string) : '';
-  if (!freet) {
-    res.status(404).json({
-      error: {
-        freetNotFound: `Freet with freet ID ${req.body.freetId} does not exist.`
       }
     });
     return;
@@ -89,9 +71,8 @@ const isValidBookmarkModifier = async (req: Request, res: Response, next: NextFu
 };
 
 export {
-  isFreetExistsWrite,
+  isFreetExists,
   isUserExists,
-  isFreetExistsRead,
   isBookmarkExists,
   isValidBookmarkModifier
 };
