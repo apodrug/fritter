@@ -1,8 +1,10 @@
 import type {HydratedDocument, Types} from 'mongoose';
 import type {Reaction} from './model';
+import type {Freet} from '../freet/model';
 import ReactionModel from './model';
 import UserCollection from '../user/collection';
 import FreetCollection from '../freet/collection';
+import FreetModel from 'freet/model';
 
 /**
  * This files contains a class that has the functionality to explore reactions
@@ -97,6 +99,7 @@ class ReactCollection {
   static async deleteMany(authorId: Types.ObjectId | string): Promise<void> {
     await ReactionModel.deleteMany({authorId});
   }
+
 }
 
 export default ReactCollection;

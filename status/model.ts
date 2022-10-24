@@ -36,7 +36,9 @@ const StatusSchema = new Schema<Status>({
   // The date the status was created
   dateCreated: {
     type: Date,
+    default: Date.now,
     required: true,
+    expiresAfterSeconds: 86400 //1day
   },
   // The content of the status
   content: {

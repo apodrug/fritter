@@ -19,10 +19,10 @@ const router = express.Router();
 /**
  * Get all bookmarks a user has made.
  *
- * @name GET /api/bookmarks?userId=id
+ * @name GET /api/bookmarks?author=USERNAME
  *
- * @return {ReactResponse[]} - An array of bookmarks created by user with id, userId
- * @throws {400} - If userId is not given
+ * @return {ReactResponse[]} - An array of bookmarks created by user
+ * @throws {400} - If username is not given
  * @throws {404} - If no user has given authorId
  *
  */

@@ -314,6 +314,13 @@ This renders the `index.html` file that will be used to interact with the backen
 
 - `403` if the user is not logged in
 
+#### `GET /api/reactions` - Get all the reactions
+
+**Returns**
+
+- An array of all reactions sorted in descending order by date modified
+
+
 #### `GET /api/reactions?author=USERNAME` - Get all reactions by a user
 
 **Returns**
@@ -333,7 +340,6 @@ This renders the `index.html` file that will be used to interact with the backen
 
 **Throws**
 
-- `400` if `ID` is not given
 - `404` if `ID` is not a recognized freet
 
 #### `POST /api/reactions` - Create a new reaction
@@ -341,7 +347,7 @@ This renders the `index.html` file that will be used to interact with the backen
 **Body**
 
 - `freetId` _{string}_ - The freet the user is reacting to
-- `type` _{string}_ - The type of reaction
+- `reactionType` _{string}_ - The type of reaction (happy,sad,heart)
 
 **Returns**
 
@@ -351,8 +357,101 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
+- `404` if the freet of given ID doesnt exist
 
-#### `DELETE /api/reactions/:reactId?` - Delete an existing reaction
+#### `DELETE /api/reactions/:id?` - Delete an existing reaction
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if the user is not logged in
+- `403` if the user is not the author of the reaction
+- `404` if the reaction id is invalid (does not exist)
+
+#### `GET /api/bookmarks` - Get all the bookmarks
+
+**Returns**
+
+- An array of all bookmarks sorted in descending order by date modified
+
+
+#### `GET /api/bookmarks?author=USERNAME` - Get all bookmarks by a user
+
+**Returns**
+
+- An array of bookmarks by user with username `author`
+
+**Throws**
+
+- `400` if `author` is not given
+- `404` if `author` is not a recognized username of any user
+
+#### `POST /api/bookmarks` - Create a new bookmark
+
+**Body**
+
+- `freetId` _{string}_ - The freet the user is bookmarking
+
+**Returns**
+
+- A success message
+- A object with the created bookmark
+
+**Throws**
+
+- `403` if the user is not logged in
+- `404` if the freet of given ID doesnt exist
+
+#### `DELETE /api/bookmarks/:id?` - Delete an existing bookmark
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if the user is not logged in
+- `403` if the user is not the author of the bookmark
+- `404` if the bookmark id is invalid (does not exist)
+
+#### `GET /api/statuses` - Get all the statuses
+
+**Returns**
+
+- An array of all statuses sorted in descending order by date modified
+
+#### `GET /api/statuses?author=USERNAME` - Get statuses by author
+
+**Returns**
+
+- An array of statuses created by user with username `author`
+
+**Throws**
+
+- `400` if `author` is not given
+- `404` if `author` is not a recognized username of any user
+
+#### `POST /api/statuses` - Create a new status
+
+**Body**
+
+- `content` _{string}_ - The content of the status
+
+**Returns**
+
+- A success message
+- A object with the created status
+
+**Throws**
+
+- `403` if the user is not logged in
+- `400` If the status content is empty or a stream of empty spaces
+- `413` If the status content is more than 30 characters long
+
+#### `DELETE /api/statuses/:id?` - Delete an existing status
 
 **Returns**
 
@@ -362,4 +461,4 @@ This renders the `index.html` file that will be used to interact with the backen
 
 - `403` if the user is not logged in
 - `403` if the user is not the author of the freet
-- `404` if the freetId is invalid
+- `404` if the status id is invalid

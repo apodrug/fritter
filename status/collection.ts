@@ -5,7 +5,7 @@ import UserCollection from '../user/collection';
 
 /**
  * This files contains a class that has the functionality to explore statuses
- * stored in MongoDB, including adding, finding, updating, and deleting statuses.
+ * stored in MongoDB, including adding, finding, and deleting statuses.
  * Feel free to add additional operations in this file.
  * 
  */

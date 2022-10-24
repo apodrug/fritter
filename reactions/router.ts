@@ -19,10 +19,11 @@ const router = express.Router();
 /**
  * Get all reactions a user has made.
  *
- * @name GET /api/reactions?userId=id
+ * @name GET /api/reactions?author=USERNAME
  *
- * @return {ReactResponse[]} - An array of reacts created by user with id, userId
- * @throws {400} - If userId is not given
+ * @return {ReactResponse[]} - An array of reacts created by user
+ * @throws {400} - If username is not given
+ * @throws {404} - If username is not recognizable
  *
  */
 router.get(
