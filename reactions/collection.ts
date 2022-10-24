@@ -125,6 +125,23 @@ class ReactCollection {
     return sortedFreetObjs;
   
     }
+
+  /**
+   * Updates a negative reaction's recommended variable
+   *
+   * @param {string} reactionId - The id of the reaction to find
+   * @return {Promise<HydratedDocument<Reaction>> | Promise<null> } - The reaction with the given reactionId, if any
+   */
+  static async updateReactionRecommended(reactionId: Types.ObjectId | string, recommended: string): Promise<HydratedDocument<Reaction>> {
+    const reaction = await ReactionModel.findOne({_id: reactionId}).populate('userId');
+    if (recommended === 'yes'){
+      reaction.recommended = 1;
+    } else { //recommended == no
+      reaction.recommended = -1;
+    };
+    await reaction.save();
+    return reaction.populate('userId');
+  }
 }
 
 export default ReactCollection;

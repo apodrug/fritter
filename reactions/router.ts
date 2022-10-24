@@ -142,4 +142,33 @@ router.delete(
   }
 );
 
+/**
+ * Modify whether a user recommends a post they reacted to (only applies to negative reactions)
+ *
+ * @name PUT /api/reactions/:id?recommended=number
+ *
+ * @param {freetId} content - the new content for the freet
+ * @return {FreetResponse} - the updated freet
+ * @throws {403} - if the user is not logged in or not the author of
+ *                 of the freet
+ * @throws {404} - If the freetId is not valid
+ * @throws {400} - If the freet content is empty or a stream of empty spaces
+ * @throws {413} - If the freet content is more than 140 characters long
+ */
+ router.put(
+  '/:id?',
+  [
+    userValidator.isUserLoggedIn,
+    reactValidator.isReactExists,
+    reactValidator.isValidReactModifier,
+  ],
+  async (req: Request, res: Response) => {
+    const reaction = await ReactCollection.updateReactionRecommended(req.params.id, req.query.recommended as string);
+    res.status(200).json({
+      message: 'Your reaction was updated successfully.',
+      freet: util.constructReactResponse(reaction)
+    });
+  }
+);
+
 export {router as reactRouter};

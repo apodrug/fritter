@@ -366,6 +366,23 @@ This renders the `index.html` file that will be used to interact with the backen
 - `403` if the user is not logged in
 - `404` if the freet of given ID doesnt exist
 
+#### `PUT /api/reactions/:id?recommended` - Update an existing negative reaction to either recommend or not recommend the post that the user reacted to
+
+**Query**
+
+- `recommended` _{string}_ - Whether the user would like to recommend the post ('yes' or 'no')
+
+**Returns**
+
+- A success message
+- An object with the updated reaction
+
+**Throws**
+
+- `403` if the user is not logged in
+- `404` if the reaction id is invalid
+- `403` if the user is not the author of the reaction
+
 #### `DELETE /api/reactions/:id?` - Delete an existing reaction
 
 **Returns**

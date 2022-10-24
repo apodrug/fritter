@@ -26,9 +26,7 @@ const isBookmarkExists = async (req: Request, res: Response, next: NextFunction)
  * Checks if a freet with freetId in req.params exists
  */
 const isFreetExists = async (req: Request, res: Response, next: NextFunction) => {
-  console.log(req.query)
   const validFormat = Types.ObjectId.isValid(req.query.freetId as string);
-  console.log(validFormat)
   const freet = validFormat ? await FreetCollection.findOne(req.query.freetId as string) : '';
   if (!freet) {
     res.status(404).json({

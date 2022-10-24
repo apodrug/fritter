@@ -60,7 +60,7 @@ const isReactExists = async (req: Request, res: Response, next: NextFunction) =>
   if (!react) {
     res.status(404).json({
       error: {
-        freetNotFound: `Reaction with ID ${req.params.id} does not exist.`
+        reactionNotFound: `Reaction with ID ${req.params.id} does not exist.`
       }
     });
     return;
@@ -74,7 +74,6 @@ const isReactExists = async (req: Request, res: Response, next: NextFunction) =>
  */
 const isValidReactModifier = async (req: Request, res: Response, next: NextFunction) => {
   const reaction = await ReactCollection.findOne(req.params.id);
-  console.log(reaction);
   const userId = reaction.userId._id;
   if (req.session.userId !== userId.toString()) {
     res.status(403).json({

@@ -11,7 +11,7 @@ const isStatusExists = async (req: Request, res: Response, next: NextFunction) =
   if (!status) {
     res.status(404).json({
       error: {
-        freetNotFound: `Status with status ID ${req.params.id} does not exist.`
+        statusNotFound: `Status with status ID ${req.params.id} does not exist.`
       }
     });
     return;
